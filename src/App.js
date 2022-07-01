@@ -26,7 +26,7 @@ function App() {
   return (
     <div className="flex-container" >
       <div>
-        <h1>Rules</h1>
+        <h1>Rule</h1>
         <button onClick={runValidation}>Run it</button>
         <RuleEditor onMount={handleRuleEditorDidMount}></RuleEditor>
       </div>
