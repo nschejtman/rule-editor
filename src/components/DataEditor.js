@@ -1,7 +1,7 @@
 import Editor from "@monaco-editor/react";
 
 
-function DataEditor() {
+function DataEditor(props) {
   const text = `#%RAML 1.0
 title: Demo API
 version: 1.0
@@ -11,6 +11,7 @@ version: 1.0
      height="50%"
      defaultLanguage="yaml"
      defaultValue={text}
+     onMount={props.onMount}
    />
   );
 }
