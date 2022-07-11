@@ -14,18 +14,19 @@ async function validate(singleRule, data) {
     "application/ld+json"
   );
 
-  console.log(transformedString);
+  let result = "";
 
-  validator.initialize(() => {
+  await validator.initialize(() => {
     validator.validate(profile, transformedString, false, (r, err) => {
       if (err) {
         console.log(err);
       } else {
-        let element = document.getElementById("report");
-        element.textContent = JSON.stringify(JSON.parse(r), null, 2);
+        result = JSON.stringify(JSON.parse(r), null, 2);
       }
     });
   });
+
+  return result;
 }
 
 function wrapInRuleset(rule) {
