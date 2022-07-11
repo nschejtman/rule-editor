@@ -5,10 +5,10 @@
 }
 
 .flex-container .vertical {
-  flex-direction: column
+  flex-direction: column;
 }
 
 .flex-container > div {
-  flex-grow:1;
+  flex-grow: 1;
   flex-basis: 50%;
 }

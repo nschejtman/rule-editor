@@ -1,30 +1,30 @@
 import RuleEditor from "./components/RuleEditor";
 import DataEditor from "./components/DataEditor";
 import React, { useRef } from "react";
-import './App.css';
+import "./App.css";
 import validate from "./Validate";
 
-
 function App() {
-  
   const ruleEditorRef = useRef(null);
   const dataEditorRef = useRef(null);
 
   function handleRuleEditorDidMount(editor, monaco) {
-    ruleEditorRef.current = editor; 
+    ruleEditorRef.current = editor;
   }
 
   function handleDataEditorDidMount(editor, monaco) {
-    dataEditorRef.current = editor; 
+    dataEditorRef.current = editor;
   }
 
   function runValidation() {
-    validate(ruleEditorRef.current.getValue(), dataEditorRef.current.getValue());
+    validate(
+      ruleEditorRef.current.getValue(),
+      dataEditorRef.current.getValue()
+    );
   }
 
-  
   return (
-    <div className="flex-container" >
+    <div className="flex-container">
       <div>
         <h1>Rule</h1>
         <button onClick={runValidation}>Run it</button>
