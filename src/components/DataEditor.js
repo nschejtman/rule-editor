@@ -1,19 +1,20 @@
 import Editor from "@monaco-editor/react";
-import { useState } from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {edit as editData, dataSelector} from "../state/Data";
 
 function DataEditor(props) {
-  const text = `#%RAML 1.0
-title: Demo API
-version: 1.0
-  `;
-  useState(text);
+  const dispatch = useDispatch();
+
+  const raw = useSelector(dataSelector)
+
+  const onDataChange = (value) => dispatch(editData(value));
+
   return (
     <Editor
       height="50%"
       defaultLanguage="yaml"
-      defaultValue={text}
-      onMount={props.onMount}
-      onChange={props.onChange}
+      defaultValue={raw}
+      onChange={onDataChange}
     />
   );
 }

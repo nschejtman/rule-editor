@@ -1,8 +1,8 @@
 import validator from "@aml-org/amf-custom-validator-web/dist/main";
-import { APIConfiguration } from "amf-client-js";
+import {APIConfiguration} from "amf-client-js";
 
-async function validate(singleRule, data) {
-  const profile = wrapInRuleset(singleRule);
+async function validate(rule, data) {
+  const profile = wrapInRuleset(rule);
 
   const amfClient = APIConfiguration.API().baseUnitClient();
   const parsingResult = await amfClient.parseContent(data);
@@ -14,19 +14,20 @@ async function validate(singleRule, data) {
     "application/ld+json"
   );
 
-  let result = "";
+  let report = [];
 
   await validator.initialize(() => {
     validator.validate(profile, transformedString, false, (r, err) => {
       if (err) {
         console.log(err);
       } else {
-        result = JSON.stringify(JSON.parse(r), null, 2);
+        // result = JSON.stringify(JSON.parse(r), null, 2);
+        report = JSON.parse(r)
       }
     });
   });
 
-  return result;
+  return report;
 }
 
 function wrapInRuleset(rule) {

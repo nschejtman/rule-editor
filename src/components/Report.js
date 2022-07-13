@@ -1,14 +1,19 @@
-import { ruleSelector } from "../state/Rule";
-import { dataSelector } from "../state/Data";
-import { useSelector } from "react-redux";
-import validate from "../Validate";
+import {conformsSelector, reportSelector} from "../state/Report";
+import {useSelector} from "react-redux";
 
 function Report(props) {
-  const rule = useSelector(ruleSelector);
-  const data = useSelector(dataSelector);
-  const result = validate(rule, data);
+  // const report = useSelector(reportSelector)
+  const conforms = useSelector(conformsSelector)
 
-  return <div id="report">${result}</div>;
+  if(conforms !== undefined) {
+    return (
+        <div id="report">Conforms: {conforms.toString()}</div>
+    );
+  } else {
+    return (
+        <div id="report">...</div>
+    );
+  }
 }
 
 export default Report;

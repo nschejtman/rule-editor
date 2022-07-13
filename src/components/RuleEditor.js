@@ -1,19 +1,20 @@
 import Editor from "@monaco-editor/react";
-import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { edit as editRule, ruleSelector } from "../state/Rule";
 
 function RuleEditor(props) {
-  const text = `targetClass: apiContract.WebAPI
-propertyConstraints:
-  core.version:
-    minCount: 1`;
-  useState(text);
+  const dispatch = useDispatch();
+
+  const raw = useSelector(ruleSelector)
+
+  const onRuleChange = (value) => dispatch(editRule(value));
+
   return (
     <Editor
       height="100vh"
       defaultLanguage="yaml"
-      defaultValue={text}
-      onMount={props.onMount}
-      onChange={props.onChange}
+      defaultValue={raw}
+      onChange={onRuleChange}
     />
   );
 }
