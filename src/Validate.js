@@ -21,13 +21,15 @@ async function validate(rule, data) {
       if (err) {
         console.log(err);
       } else {
-        // result = JSON.stringify(JSON.parse(r), null, 2);
         report = JSON.parse(r)
       }
     });
   });
 
-  return report;
+  return {
+    report: report,
+    resolved: transformedString
+  };
 }
 
 function wrapInRuleset(rule) {
